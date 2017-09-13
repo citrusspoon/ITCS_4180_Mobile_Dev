@@ -16,6 +16,7 @@
     <string name="resetButtonText">Reset</string>
     <string name="bacLabelText">BAC Level:</string>
     <string name="bacLevelText">0.00</string>
-    <string name="statusLabelText">Your Status:</string>>
+    <string name="statusLabelText">Your Status:</string>
+    <string name="statusText">You\'re safe</string>>
 
 </resources>

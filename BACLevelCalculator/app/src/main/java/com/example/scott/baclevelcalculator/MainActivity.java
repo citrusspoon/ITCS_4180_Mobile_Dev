@@ -3,9 +3,12 @@ package com.example.scott.baclevelcalculator;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     double weight;
     boolean gender; //false = female, true = male
     final int stepSize = 5; //step interval for alcSlider
+    double currentBACLevel = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         final Button saveButton = (Button) findViewById(R.id.saveButton);
         final SeekBar alcSlider = (SeekBar)findViewById(R.id.alcSlider);
         final TextView alcPercentTrack = (TextView)findViewById(R.id.alcPercentTrack);
-
+        final ProgressBar bacProgressBar = (ProgressBar)findViewById(R.id.bacProgressBar);
+        final Button addDrinkButton = (Button) findViewById(R.id.addDrinkButton);
+        final RadioGroup drinkRadioGroup = (RadioGroup)findViewById(R.id.drinkRadioGroup);
+        final TextView bacLevelText = (TextView)findViewById(R.id.bacLevel);
 
 
 
@@ -75,7 +82,47 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        //-------Add Drink--------------------------------//
 
+        addDrinkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(currentBACLevel < 0.25) {
+                    int currentDrinkID = drinkRadioGroup.getCheckedRadioButtonId(); //gets the id of the currently selected drink size
+                    double drinkSize = 0.0;
+                    double drinkAlcPercent = ((double) alcSlider.getProgress()) / 100.0; //alcohol percentage
+                    double bacLevel = 0.0;
+                    double genderConst;
+                    //sets the gender constant
+                    if (gender) //male
+                        genderConst = 0.68;
+                    else //female
+                        genderConst = 0.55;
+
+                    switch (currentDrinkID) { //gets the double value of the drink size in oz
+                        case R.id.oneOzRadio:
+                            drinkSize = 1.0;
+                            break;
+                        case R.id.fiveOzRadio:
+                            drinkSize = 5.0;
+                            break;
+                        case R.id.twelveOzRadio:
+                            drinkSize = 12.0;
+                            break;
+                    }
+
+                    bacLevel = ((drinkSize * drinkAlcPercent) * 6.24) / (weight * genderConst);
+                    currentBACLevel += bacLevel;
+
+
+                    bacProgressBar.setProgress((int) (currentBACLevel * 100));
+                    bacLevelText.setText(Double.toString(currentBACLevel).substring(0, 4));
+                }
+
+
+            }
+        });
 
 
 

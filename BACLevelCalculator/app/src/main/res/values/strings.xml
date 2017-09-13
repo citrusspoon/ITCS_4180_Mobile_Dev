@@ -6,4 +6,8 @@
     <string name="maleText">M</string>
     <string name="femaleText">F</string>
     <string name="saveButtonText">Save</string>
+    <string name="drinkText">Drink Size</string>
+    <string name="oneOzText">1 oz</string>
+    <string name="fiveOzText">5 oz</string>
+    <string name="twelveOzText">12 oz</string>
 </resources>

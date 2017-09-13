@@ -82,4 +82,56 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.129" />
 
+    <TextView
+        android:id="@+id/drinkTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/drinkText"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintVertical_bias="0.307" />
+
+    <RadioGroup
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.302">
+
+        <RadioButton
+            android:id="@+id/oneOzRadio"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:text="@string/oneOzText" />
+
+        <RadioButton
+            android:id="@+id/fiveOzRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/fiveOzText" />
+
+        <RadioButton
+            android:id="@+id/twelveOzRadio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/twelveOzText" />
+    </RadioGroup>
+
 </android.support.constraint.ConstraintLayout>

@@ -11,7 +11,7 @@
     <string name="fiveOzText">5 oz</string>
     <string name="twelveOzText">12 oz</string>
     <string name="alcPercentText">Alcohol %</string>
-    <string name="alcPercent">0%</string>
+    <string name="alcPercent">5%</string>
     <string name="addDrinkButtonText">Add Drink</string>
     <string name="resetButtonText">Reset</string>
     <string name="bacLabelText">BAC Level:</string>

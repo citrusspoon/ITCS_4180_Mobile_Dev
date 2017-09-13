@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     //---------------Global Variables------------------//
     double weight;
     boolean gender; //false = female, true = male
+    final int stepSize = 5; //step interval for alcSlider
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         final Switch genderSwitch = (Switch) findViewById(R.id.genderSwitch);
         final EditText weightInput = (EditText)findViewById(R.id.weightInput);
         final Button saveButton = (Button) findViewById(R.id.saveButton);
+        final SeekBar alcSlider = (SeekBar)findViewById(R.id.alcSlider);
+        final TextView alcPercentTrack = (TextView)findViewById(R.id.alcPercentTrack);
+
 
 
 
@@ -48,6 +53,29 @@ public class MainActivity extends AppCompatActivity {
                 gender = genderSwitch.isChecked();
             }
         });
+
+        //---------Alcohol Slider------------------------------------//
+
+        //alcSlider.setMax(25);
+        alcSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                progress = ((int)Math.round(progress/stepSize))*stepSize;
+                seekBar.setProgress(progress);
+                alcPercentTrack.setText(progress+ "%");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
 
 

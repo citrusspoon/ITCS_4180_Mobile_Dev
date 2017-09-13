@@ -14,6 +14,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     //---------------Global Variables------------------//
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         final Button addDrinkButton = (Button) findViewById(R.id.addDrinkButton);
         final RadioGroup drinkRadioGroup = (RadioGroup)findViewById(R.id.drinkRadioGroup);
         final TextView bacLevelText = (TextView)findViewById(R.id.bacLevel);
+        final TextView statusText = (TextView)findViewById(R.id.statusView);
 
 
 
@@ -119,6 +122,27 @@ public class MainActivity extends AppCompatActivity {
                     bacProgressBar.setProgress((int) (currentBACLevel * 100));
                     bacLevelText.setText(Double.toString(currentBACLevel).substring(0, 4));
                 }
+                else{
+                    Context context = getApplicationContext();
+                    CharSequence text = "No more drinks for you.";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    //Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+
+                if(currentBACLevel <= 0.08){
+                    statusText.setText("You're safe");
+                }
+                else if(currentBACLevel < 0.2){
+                    statusText.setText("Be careful...");
+                }
+                else if(currentBACLevel <= 0.25){
+                    statusText.setText("Over the limit!");
+
+                }
+
 
 
             }

@@ -3,4 +3,6 @@
     <string name="weightText">Weight (lbs)</string>
     <string name="weightInputHint">Enter Weight</string>
     <string name="genderText">Gender</string>
+    <string name="maleText">M</string>
+    <string name="femaleText">F</string>
 </resources>

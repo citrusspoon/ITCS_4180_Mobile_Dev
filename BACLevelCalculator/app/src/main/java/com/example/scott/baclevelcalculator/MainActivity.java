@@ -33,15 +33,10 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
-                if(isDouble(weightInput.getText().toString())) {
+                if(isDouble(weightInput.getText().toString()) && Double.parseDouble(weightInput.getText().toString()) > 0.0) {
                     weight = Double.parseDouble(weightInput.getText().toString());
-
                 }
                 else {
-
                     Context context = getApplicationContext();
                     CharSequence text = "Invalid input";
                     int duration = Toast.LENGTH_SHORT;
@@ -50,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
-
-
                 gender = genderSwitch.isChecked();
             }
         });

@@ -5,4 +5,5 @@
     <string name="genderText">Gender</string>
     <string name="maleText">M</string>
     <string name="femaleText">F</string>
+    <string name="saveButtonText">Save</string>
 </resources>

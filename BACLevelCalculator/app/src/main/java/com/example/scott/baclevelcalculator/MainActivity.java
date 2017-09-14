@@ -1,3 +1,11 @@
+/*
+* Homework 1
+* HW1.zip
+* Scott Schreiber
+* */
+
+
+
 package com.example.scott.baclevelcalculator;
 
 import android.content.Context;
@@ -128,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         //---------Alcohol Slider------------------------------------//
 
-        //alcSlider.setMax(25);
+
         alcSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
@@ -152,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
         addDrinkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 if(weight > 0.0) {
 
@@ -198,15 +205,8 @@ public class MainActivity extends AppCompatActivity {
                     toast.show();
                 }
 
-
-
-
             }
         });
-
-
-
-
     }
 
     protected void calculateBac(ProgressBar p, TextView t, TextView s, Button b1, Button b2){

@@ -55,19 +55,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //------------Components-----------------------------------------//
-        final Switch genderSwitch = (Switch) findViewById(R.id.genderSwitch);
         final EditText weightInput = (EditText)findViewById(R.id.weightInput);
-        final Button saveButton = (Button) findViewById(R.id.saveButton);
-        final SeekBar alcSlider = (SeekBar)findViewById(R.id.alcSlider);
         final TextView alcPercentTrack = (TextView)findViewById(R.id.alcPercentTrack);
-
-        final Button addDrinkButton = (Button) findViewById(R.id.addDrinkButton);
-        final RadioGroup drinkRadioGroup = (RadioGroup)findViewById(R.id.drinkRadioGroup);
-
         final TextView statusText = (TextView)findViewById(R.id.statusView);
-        final ProgressBar bacProgressBar = (ProgressBar)findViewById(R.id.bacProgressBar);
         final TextView bacLevelText = (TextView)findViewById(R.id.bacLevel);
 
+        final Button addDrinkButton = (Button) findViewById(R.id.addDrinkButton);
+        final Button saveButton = (Button) findViewById(R.id.saveButton);
+        final Button resetButton = (Button) findViewById(R.id.resetButton);
+        final SeekBar alcSlider = (SeekBar)findViewById(R.id.alcSlider);
+        final Switch genderSwitch = (Switch) findViewById(R.id.genderSwitch);
+        final RadioGroup drinkRadioGroup = (RadioGroup)findViewById(R.id.drinkRadioGroup);
+        final ProgressBar bacProgressBar = (ProgressBar)findViewById(R.id.bacProgressBar);
 
 
         //---------Save Button-----------------------------------------//
@@ -77,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(isDouble(weightInput.getText().toString()) && Double.parseDouble(weightInput.getText().toString()) > 0.0) {
                     weight = Double.parseDouble(weightInput.getText().toString());
+
+                    Context context = getApplicationContext();
+                    CharSequence text = "Information updated.";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    //Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
                 else {
                     Context context = getApplicationContext();
@@ -89,18 +96,35 @@ public class MainActivity extends AppCompatActivity {
                 }
                 gender = genderSwitch.isChecked();
 
-                calculateBac(bacProgressBar, bacLevelText, statusText);
+                calculateBac(bacProgressBar, bacLevelText, statusText, addDrinkButton, saveButton);
 
 
-                Context context = getApplicationContext();
-                CharSequence text = "Information updated.";
-                int duration = Toast.LENGTH_SHORT;
-
-                //Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
             }
         });
+
+        //-----------Reset Button-------------------------------------//
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //remove all drinks from the list
+                drinkList.clear();
+                //reset drink size radio button
+                drinkRadioGroup.check(R.id.oneOzRadio);
+                //reset alc % slider
+                alcSlider.setProgress(5);
+                //reset weight field
+                weightInput.setText("");
+                weight = 0.0;
+                //reset gender switch
+                genderSwitch.setChecked(false);
+                //recalculates BAC
+                calculateBac(bacProgressBar, bacLevelText, statusText, addDrinkButton, saveButton);
+                // reenable buttons
+                addDrinkButton.setEnabled(true);
+                saveButton.setEnabled(true);
+            }
+        });
+
 
         //---------Alcohol Slider------------------------------------//
 
@@ -129,39 +153,50 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(currentBACLevel < 0.25) {
 
-                    //get current drink size
-                    int currentDrinkID = drinkRadioGroup.getCheckedRadioButtonId(); //gets the id of the currently selected drink size
-                    double drinkSize = 0.0;
-                    switch (currentDrinkID) { //gets the double value of the drink size in oz
-                        case R.id.oneOzRadio:
-                            drinkSize = 1.0;
-                            break;
-                        case R.id.fiveOzRadio:
-                            drinkSize = 5.0;
-                            break;
-                        case R.id.twelveOzRadio:
-                            drinkSize = 12.0;
-                            break;
+                if(weight > 0.0) {
+
+                    if (currentBACLevel < 0.25) {
+
+                        //get current drink size
+                        int currentDrinkID = drinkRadioGroup.getCheckedRadioButtonId(); //gets the id of the currently selected drink size
+                        double drinkSize = 0.0;
+                        switch (currentDrinkID) { //gets the double value of the drink size in oz
+                            case R.id.oneOzRadio:
+                                drinkSize = 1.0;
+                                break;
+                            case R.id.fiveOzRadio:
+                                drinkSize = 5.0;
+                                break;
+                            case R.id.twelveOzRadio:
+                                drinkSize = 12.0;
+                                break;
+                        }
+                        //get current drink %
+                        double drinkAlcPercent = ((double) alcSlider.getProgress()) / 100.0; //alcohol percentage
+                        //add new drink to list
+                        drinkList.add(new Drink(drinkSize, drinkAlcPercent));
+                        //calculate BAC
+                        calculateBac(bacProgressBar, bacLevelText, statusText, addDrinkButton, saveButton);
+                    } else {
+                        Context context = getApplicationContext();
+                        CharSequence text = "No more drinks for you.";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        //Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
                     }
-                    //get current drink %
-                    double drinkAlcPercent = ((double) alcSlider.getProgress()) / 100.0; //alcohol percentage
-                    //add new drink to list
-                    drinkList.add(new Drink(drinkSize,drinkAlcPercent));
-                    //calculate BAC
-                    calculateBac(bacProgressBar, bacLevelText, statusText);
                 }
                 else{
                     Context context = getApplicationContext();
-                    CharSequence text = "No more drinks for you.";
+                    CharSequence text = "Enter weight.";
                     int duration = Toast.LENGTH_SHORT;
 
                     //Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
-
 
 
 
@@ -174,41 +209,57 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    protected void calculateBac(ProgressBar p, TextView t, TextView s){
+    protected void calculateBac(ProgressBar p, TextView t, TextView s, Button b1, Button b2){
+
+        currentBACLevel = 0.0;
+        p.setProgress(0);
+        t.setText("0.00");
 
         if(drinkList.size() > 0) {
-            double bacLevel = 0.0;
-            double genderConst;
-            //sets the gender constant
-            if (gender) //male
-                genderConst = 0.68;
-            else //female
-                genderConst = 0.55;
 
 
-            for (Drink d : drinkList) {
+                double bacLevel = 0.0;
+                double genderConst;
+                //sets the gender constant
+                if (gender) //male
+                    genderConst = 0.68;
+                else //female
+                    genderConst = 0.55;
 
-                bacLevel = ((d.getSize() * d.getAlcPercent()) * 6.24) / (weight * genderConst);
-                currentBACLevel += bacLevel;
 
+                for (Drink d : drinkList) {
+
+                    bacLevel = ((d.getSize() * d.getAlcPercent()) * 6.24) / (weight * genderConst);
+                    currentBACLevel += bacLevel;
+
+                }
+                p.setProgress((int) (currentBACLevel * 100));
+                t.setText(Double.toString(currentBACLevel).substring(0, 4));
+
+        }
+
+
+        if(currentBACLevel <= 0.08){
+            s.setText("You're safe");
+            s.setBackgroundResource(R.color.green);
+        }
+        else if(currentBACLevel < 0.2){
+            s.setText("Be careful...");
+            s.setBackgroundResource(R.color.orange);
+        }
+        else{
+            s.setText("Over the limit!");
+            s.setBackgroundResource(R.color.red);
+            //disable buttons
+            if(currentBACLevel >= 0.25) {
+                b1.setEnabled(false);
+                b2.setEnabled(false);
             }
 
-            p.setProgress((int) (currentBACLevel * 100));
-            t.setText(Double.toString(currentBACLevel).substring(0, 4));
-
-            if(currentBACLevel <= 0.08){
-                s.setText("You're safe");
-            }
-            else if(currentBACLevel < 0.2){
-                s.setText("Be careful...");
-            }
-            else{
-                s.setText("Over the limit!");
-
-            }
         }
 
     }
+
 
     protected boolean isDouble(String str) {
         try {

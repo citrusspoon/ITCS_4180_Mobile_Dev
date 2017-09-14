@@ -292,7 +292,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/statusColor"
+        android:background="@color/green"
         android:text="@string/statusText"
         android:textColor="@android:color/white"
         android:textStyle="bold"

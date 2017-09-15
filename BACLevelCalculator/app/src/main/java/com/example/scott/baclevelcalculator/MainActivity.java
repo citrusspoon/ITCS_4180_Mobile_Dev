@@ -4,8 +4,6 @@
 * Scott Schreiber
 * */
 
-
-
 package com.example.scott.baclevelcalculator;
 
 import android.content.Context;
@@ -22,13 +20,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-
 
     public class Drink {
 
@@ -94,19 +89,11 @@ public class MainActivity extends AppCompatActivity {
                     toast.show();
                 }
                 else {
-                    Context context = getApplicationContext();
-                    CharSequence text = "Invalid input";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    //Toast.makeText(context, "", Toast.LENGTH_SHORT).show();
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                    weightInput.setError("Enter a valid weight.");
                 }
                 gender = genderSwitch.isChecked();
 
                 calculateBac(bacProgressBar, bacLevelText, statusText, addDrinkButton, saveButton);
-
-
             }
         });
 

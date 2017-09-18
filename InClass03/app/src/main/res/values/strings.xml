@@ -14,4 +14,12 @@
     <string name="nameText">name</string>
     <string name="emailText">email</string>
     <string name="deptViewText">dept</string>
+    <string name="nameHint">Name</string>
+    <string name="emailHint">Email</string>
+    <string name="department">Department: </string>
+
+    <string name="sis">SIS</string>
+    <string name="cs">CS</string>
+    <string name="bio">BIO</string>
+    <string name="submit">Submit</string>
 </resources>

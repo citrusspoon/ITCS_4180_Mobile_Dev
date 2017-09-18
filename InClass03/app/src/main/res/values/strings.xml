@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">InClass03</string>
+    <string name="nameFieldText">Name</string>
+    <string name="emailFieldText">Email</string>
+    <string name="departmentText">Department:</string>
+    <string name="sisRadioText">SIS</string>
+    <string name="cisRadioText">CIS</string>
+    <string name="bioRadioText">BIO</string>
+    <string name="avatarSelectText">Select your avatar</string>
+    <string name="nameLabelText">Name:</string>
+    <string name="emailLabelText">Email:</string>
+    <string name="deptText">Department:</string>
+    <string name="statusText">I am ___!</string>
+    <string name="nameText">name</string>
+    <string name="emailText">email</string>
+    <string name="deptViewText">dept</string>
+</resources>

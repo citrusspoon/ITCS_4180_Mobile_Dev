@@ -26,13 +26,15 @@
         android:layout_alignParentTop="true"
         android:hint="@string/nameHint" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/selectAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/emailEditText"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="18dp"
+        android:foregroundGravity="center_vertical|center_horizontal"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/select_avatar" />
 
     <RadioGroup
@@ -50,7 +52,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/sis" />
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/sis"
+            android:visibility="visible" />
 
         <RadioButton
             android:id="@+id/csButton"
@@ -109,5 +113,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         app:srcCompat="@drawable/angry" />
+
+
 
 </RelativeLayout>

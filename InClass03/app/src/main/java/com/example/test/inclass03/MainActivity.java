@@ -6,11 +6,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +25,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_main);
 
         //ImageView moodview = (ImageView)findViewById(R.id.moodImage);
+        ImageButton avatarButton = (ImageButton) findViewById(R.id.selectAvatar);
 
         SeekBar selectMood = (SeekBar) findViewById(R.id.selectMood);
         selectMood.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -27,15 +35,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 percentageChanged = progress;
-            }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
                 switch (percentageChanged){
                     case (0):
                         moodView.setImageResource(R.drawable.angry);
@@ -50,6 +50,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
                         moodView.setImageResource(R.drawable.awesome);
                         break;
                 }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }

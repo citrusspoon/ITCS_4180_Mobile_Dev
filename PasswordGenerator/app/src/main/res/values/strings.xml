@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PasswordGenerator</string>
+    <string name="passCountLabelText">Select passwords count:</string>
+    <string name="passLengthLabelText" >Select password length:</string>
+    <string name="countViewText">1</string>
+    <string name="lengthViewText">8</string>
+    <string name="passLabelText">Password:</string>
+    <string name="passViewText" />
+    <string name="threadGenButtonText">Generate Passwords (Thread)</string>
+    <string name="asyncGenButtonText">Generate Passwords (Async Task)</string>
+    <string name="progressViewText">0/100</string>
+</resources>

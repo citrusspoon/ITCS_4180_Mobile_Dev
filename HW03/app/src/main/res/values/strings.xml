@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">HW03</string>
+    <string name="welcomeText">Welcome to\nTrivia App</string>
+    <string name="loadStatusText">Loading Trivia</string>
+    <string name="exitButtonText">Exit</string>
+    <string name="startButtonText">Start Trivia</string>
+    <string name="questionNumberText">Q?</string>
+    <string name="timerViewText">Time Left: X Seconds</string>
+    <string name="quitButtonText">Quit</string>
+    <string name="nextButtonText">Next</string>
+    <string name="questionText">Question</string>
+    <string name="imageLoadText">Loading Image</string>
+    <string name="titleText">Trivia Stats</string>
+    <string name="percentLabelText">0%</string>
+    <string name="tryAgainText">Try again and see if you can get all the correct answers!</string>
+    <string name="tryAgainButtonText" >Try Again</string>
+</resources>

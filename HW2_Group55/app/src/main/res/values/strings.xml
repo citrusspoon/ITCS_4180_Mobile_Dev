@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">HW2_Group5</string>
+
+    <!--Activity Titles-->
+    <string name="contactList">Contacts List</string>
+    <string name="editContacts">Edit Contacts</string>
+    <string name="addContacts">Add Contacts</string>
+
+    <!--Button Text-->
+    <string name="create">Create New</string>
+    <string name="edit">Edit Contact</string>
+    <string name="delete">Delete Contact</string>
+    <string name="display">Display Contact</string>
+    <string name="finish">Finish</string>
+    <string name="save">Save</string>
+
+    <!--EditText Hints-->
+    <string name="first">First</string>
+    <string name="last">Last</string>
+    <string name="company">Company</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="url">URL</string>
+    <string name="address">Address</string>
+    <string name="birthday">Birthday</string>
+    <string name="nname">Nickname</string>
+    <string name="facebook">Facebook Profile URL</string>
+    <string name="twitter">Twitter Profile URL</string>
+    <string name="skype">Skype</string>
+    <string name="youtube">Youtube Channel</string>
+    <string name="title_activity_contacts_list">ContactsList</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

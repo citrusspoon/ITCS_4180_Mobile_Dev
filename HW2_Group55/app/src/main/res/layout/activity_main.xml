@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bri.hw2_group5.MainActivity">
+
+
+    <Button
+        android:id="@+id/createButton"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_weight="1"
+        android:text="@string/create"/>
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/createButton"
+        android:layout_alignStart="@+id/createButton"
+        android:layout_below="@+id/createButton"
+        android:layout_marginTop="26dp"
+        android:layout_weight="1"
+        android:text="@string/edit"/>
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editButton"
+        android:layout_alignStart="@+id/editButton"
+        android:layout_below="@+id/editButton"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:text="@string/delete"/>
+
+    <Button
+        android:id="@+id/displayButton"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/deleteButton"
+        android:layout_alignStart="@+id/deleteButton"
+        android:layout_below="@+id/deleteButton"
+        android:layout_marginTop="27dp"
+        android:layout_weight="1"
+        android:text="@string/display"/>
+
+    <Button
+        android:id="@+id/finishButton"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/displayButton"
+        android:layout_alignStart="@+id/displayButton"
+        android:layout_below="@+id/displayButton"
+        android:layout_marginTop="31dp"
+        android:layout_weight="1"
+        android:text="@string/finish"/>
+</RelativeLayout>

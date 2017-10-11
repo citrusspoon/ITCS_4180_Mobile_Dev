@@ -9,7 +9,7 @@
  *
  */
 
-//TODO: Time limit, blocking actions if there is no internet connection, changing stats percent text color
+
 
 
 package com.example.test.hw03;

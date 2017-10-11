@@ -1,6 +1,7 @@
 package com.example.test.hw03;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class TriviaActivity extends AppCompatActivity {
     ProgressBar loadingBar;
     ImageView questionImage;
     TextView questionNumber;
+    TextView timer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class TriviaActivity extends AppCompatActivity {
         correctAnswers = 0;
 
         Button quitButton = (Button) findViewById(R.id.quitButton);
+        timer = (TextView) findViewById(R.id.timerView);
         nextButton = (Button) findViewById(R.id.nextButton);
         choicesRG = (RadioGroup) findViewById(R.id.choicesRadioGroup);
         loadingBar = (ProgressBar) findViewById(R.id.imageLoadingBar);
@@ -97,6 +100,30 @@ public class TriviaActivity extends AppCompatActivity {
                 //Log.d("test", "Checked: " + checked);
             }
         });
+
+
+        new CountDownTimer(120000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+               timer.setText("Time Left: " + millisUntilFinished / 1000 + " Seconds");
+
+            }
+
+            public void onFinish() {
+
+                //timer.setText("Time's Up!");
+                //go to stats activity
+                Intent statsIntent = new Intent(TriviaActivity.this, StatsActivity.class);
+                Log.d("test", "Initiate Stats Activity");
+                //Log.d("test", "Correct Answers: " + correctAnswers + "/" + questionList.size());
+                statsIntent.putExtra(MainActivity.PERCENT_KEY, (double)correctAnswers/(double)questionList.size());
+                Log.d("test", "Sending double: " + (double)correctAnswers/(double)questionList.size());
+                statsIntent.putExtra(MainActivity.QUESTION_LIST_KEY, questionList);
+                finish();
+                startActivity(statsIntent);
+            }
+
+        }.start();
 
 
     }
